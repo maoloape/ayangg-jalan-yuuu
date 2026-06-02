@@ -1,255 +1,40 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ayang Capaa Main yukkk 🖤</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capaa Main yukkk 🖤</title>
+    <link rel="stylesheet" href="style.css">
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    min-height:100vh;
-    background:#111;
-    color:#fff;
-    font-family:Arial,sans-serif;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    overflow:hidden;
-}
-
-.container{
-    width:100%;
-    max-width:600px;
-    padding:20px;
-    text-align:center;
-}
-
-h1{
-    margin-bottom:30px;
-    line-height:1.5;
-    font-size:clamp(1.5rem,5vw,2.3rem);
-}
-
-button{
-    border:none;
-    border-radius:12px;
-    padding:14px 24px;
-    cursor:pointer;
-    font-size:16px;
-    margin:8px;
-}
-
-.primary{
-    background:#ff4d6d;
-    color:#fff;
-}
-
-.secondary{
-    background:#666;
-    color:#fff;
-}
-
-.option{
-    width:100%;
-    max-width:320px;
-}
-
-input{
-    width:100%;
-    max-width:350px;
-    padding:14px;
-    border-radius:10px;
-    border:none;
-    margin-top:20px;
-    font-size:16px;
-}
-
-#nextBtn{
-    margin-top:20px;
-}
-
-.progress{
-    margin-bottom:20px;
-    opacity:.7;
-}
-
-.success{
-    font-size:1.5rem;
-}
-</style>
 </head>
 <body>
+    <div class="container">
+        <div class="progress" id="progress"></div>
 
-<div class="container">
+        <div id="app">
 
-    <div class="progress" id="progress"></div>
+            <img src="capaa.png" alt="capaa" class="floating">
+            <h1 id="question">
+                Capaa Main yukkk 🖤
+            </h1>
 
-    <div id="app">
+            <button class="primary" id="yesBtn">
+                Yukk Akuu Mauuuu Bangetttt 🖤🖤
+            </button>
 
-        <h1 id="question">
-            Ayang Sabtuu Besokk mauu mainn gaaa 🖤
-        </h1>
+            <br>
 
-        <button class="primary" id="yesBtn">
-            Yukk Akuu Mauuuu Bangetttt 🖤🖤
-        </button>
+            <button class="secondary" id="noBtn">
+                GA!
+            </button>
 
-        <br>
-
-        <button class="secondary" id="noBtn">
-            GA!
-        </button>
+        </div>
 
     </div>
 
-</div>
+    <div class="love-container" id="loveContainer"></div>
 
-<script>
-
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbztWWuLrvF7BeaLE_EhKVav6K0Nm1ecjProwGaUx5qlacrAqvnFB8vPLHIGM_oVky9EIg/exec";
-
-const app = document.getElementById("app");
-const progress = document.getElementById("progress");
-
-const dataForm = {
-    tema:"",
-    makanan:"",
-    baju:"",
-    jam:""
-};
-
-const noBtn = document.getElementById("noBtn");
-
-function moveButton(){
-    const maxX = window.innerWidth - noBtn.offsetWidth;
-    const maxY = window.innerHeight - noBtn.offsetHeight;
-
-    noBtn.style.position = "fixed";
-    noBtn.style.left = Math.random() * maxX + "px";
-    noBtn.style.top = Math.random() * maxY + "px";
-}
-
-noBtn.addEventListener("mouseover", moveButton);
-noBtn.addEventListener("touchstart", moveButton);
-
-document.getElementById("yesBtn").addEventListener("click", showTema);
-
-function showTema(){
-
-    progress.innerHTML = "1 / 4";
-
-    app.innerHTML = `
-        <h1>YEAYYYY 🥰🥰🥰<br>Tema mainnya mau apa ayang?</h1>
-
-        <button class="primary option" onclick="pilihTema('Alam')">🌳 Alam</button>
-        <button class="primary option" onclick="pilihTema('Jalan Jauh')">🚗 Jalan-jalan Jauh</button>
-        <button class="primary option" onclick="pilihTema('Cafe')">☕ Cafe</button>
-        <button class="primary option" onclick="pilihTema('Mall')">🛍️ Mall</button>
-        <button class="primary option" onclick="pilihTema('Binatang')">🐱 Binatang</button>
-    `;
-}
-
-window.pilihTema = function(tema){
-
-    dataForm.tema = tema;
-
-    progress.innerHTML = "2 / 4";
-
-    app.innerHTML = `
-        <h1>Mau makan apaa ayang? 😋</h1>
-
-        <button class="primary option" onclick="pilihMakanan('Ayam')">🍗 Ayam</button>
-        <button class="primary option" onclick="pilihMakanan('Ikan')">🐟 Ikan</button>
-        <button class="primary option" onclick="pilihMakanan('Seafood')">🦐 Seafood</button>
-        <button class="primary option" onclick="pilihMakanan('Pizza')">🍕 Pizza</button>
-        <button class="primary option" onclick="pilihMakanan('Burger')">🍔 Burger</button>
-        <button class="primary option" onclick="pilihMakanan('Mie')">🍜 Mie</button>
-    `;
-}
-
-window.pilihMakanan = function(makanan){
-
-    dataForm.makanan = makanan;
-
-    progress.innerHTML = "3 / 4";
-
-    app.innerHTML = `
-        <h1>Pake baju apa ayang? 👗</h1>
-
-        <input
-            id="baju"
-            placeholder="Contoh: Dress Hitam Gemoy 🖤"
-        >
-
-        <br>
-
-        <button
-            class="primary"
-            onclick="simpanBaju()"
-        >
-            Lanjut ➜
-        </button>
-    `;
-}
-
-window.simpanBaju = function(){
-
-    dataForm.baju =
-        document.getElementById("baju").value;
-
-    progress.innerHTML = "4 / 4";
-
-    app.innerHTML = `
-        <h1>Kira-kira aku harus sampai jam berapa ayang? ⏰</h1>
-
-        <input type="time" id="jam">
-
-        <br>
-
-        <button
-            class="primary"
-            onclick="submitData()"
-        >
-            Kirim 🖤
-        </button>
-    `;
-}
-
-window.submitData = async function(){
-
-    dataForm.jam =
-        document.getElementById("jam").value;
-
-    try{
-
-        await fetch(APPS_SCRIPT_URL,{
-            method:"POST",
-            mode:"no-cors",
-            body: JSON.stringify(dataForm)
-        });
-
-    }catch(err){
-        console.error(err);
-    }
-
-    progress.innerHTML = "";
-
-    app.innerHTML = `
-        <div class="success">
-            YEAYYYY 🥰🥰🥰<br><br>
-            Makaciiiiii ayanggg 🖤<br><br>
-            Sampai ketemuuu Sabtuuu 🥰
-        </div>
-    `;
-}
-
-</script>
-
+    <script src="script.js"></script>
+    
 </body>
 </html>

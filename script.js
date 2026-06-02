@@ -126,13 +126,19 @@ window.submitData = async function(){
         console.error(err);
     }
 
+    const tanggal = document.getElementById("tanggal").value;
+    const date = new Date(tanggal);
+    const hari = date.toLocaleDateString("id-ID", {weekday: "long"});
+    const hariLower = hari.toLowerCase();
+    const hariCapitalized = hariLower.charAt(0).toUpperCase() + hariLower.slice(1);
+
     progress.innerHTML = "";
 
     app.innerHTML = `
         <div class="success">
             YEAYYYY 🥰🥰🥰<br><br>
             Makaciiiiii capaa 🖤<br><br>
-            Sampai ketemuuu Sabtuuu 🥰
+            Sampai ketemuuu ${hariCapitalized} 🥰
         </div>
     `;
 }

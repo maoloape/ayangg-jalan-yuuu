@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayang Capaa Main yukkk 🖤</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #111;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        #question {
+            color: white;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            line-height: 1.5;
+        }
+
+        #yesBtn,
+        #noBtn {
+            border: none;
+            border-radius: 12px;
+            padding: 14px 24px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        #yesBtn {
+            background: #ff4d6d;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        #noBtn {
+            background: #666;
+            color: white;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 id="question">
+            Ayang Sabtuu Besokk mauu mainn gaaa 🖤
+        </h1>
+
+        <button id="yesBtn">
+            Yukk Akuu Mauuuu Bangetttt 🖤🖤
+        </button>
+
+        <br>
+
+        <button id="noBtn">
+            GA!
+        </button>
+    </div>
+
+    <script>
+        const noBtn = document.getElementById("noBtn");
+        const yesBtn = document.getElementById("yesBtn");
+        const question = document.getElementById("question");
+
+        function moveButton() {
+            const maxX = window.innerWidth - noBtn.offsetWidth;
+            const maxY = window.innerHeight - noBtn.offsetHeight;
+
+            const x = Math.random() * maxX;
+            const y = Math.random() * maxY;
+
+            noBtn.style.position = "fixed";
+            noBtn.style.left = `${x}px`;
+            noBtn.style.top = `${y}px`;
+        }
+
+        noBtn.addEventListener("mouseover", moveButton);
+        noBtn.addEventListener("touchstart", moveButton);
+
+        yesBtn.addEventListener("click", () => {
+            question.innerHTML = `
+                YEAYYYY 🥰🥰🥰<br>
+                Makaciiiiii ayanggg 🖤
+            `;
+
+            yesBtn.style.display = "none";
+            noBtn.style.display = "none";
+        });
+    </script>
+
+</body>
+</html>

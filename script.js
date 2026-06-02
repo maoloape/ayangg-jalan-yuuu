@@ -1,4 +1,4 @@
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbztWWuLrvF7BeaLE_EhKVav6K0Nm1ecjProwGaUx5qlacrAqvnFB8vPLHIGM_oVky9EIg/exec";
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbya-sv6ScLUrQNAWbzNw-EpdkEUQE2LdjQqiIlrUz9IrDc91u6Be6C3XDr5S8jc9sBaYg/exec";
 
 const app = document.getElementById("app");
 const progress = document.getElementById("progress");
@@ -38,6 +38,7 @@ function showTema(){
         <button class="primary option" onclick="pilihTema('Cafe')">☕ Cafe</button>
         <button class="primary option" onclick="pilihTema('Mall')">🛍️ Mall</button>
         <button class="primary option" onclick="pilihTema('Binatang')">🐱 Binatang</button>
+        <button class="primary option" onclick="pilihTema('Nanti aja deh pas Ketemu')">Nanti aja deh pas Ketemu</button>
     `;
 }
 
@@ -111,6 +112,8 @@ window.simpanBaju = function(){
 
 window.submitData = async function(){
 
+    dataForm.tanggal =
+        document.getElementById("tanggal").value;
     dataForm.jam =
         document.getElementById("jam").value;
 

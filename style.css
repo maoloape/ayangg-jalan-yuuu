@@ -33,17 +33,25 @@ body{
 
 @keyframes floatLove{
     0%{
-        transform: translateY(0) scale(0.8);
-        opacity: 0;
+        transform: translate(0,0) scale(.8);
+        opacity:0;
     }
 
-    15%{
-        opacity: 1;
+    25%{
+        transform: translate(-15px,-25vh);
+    }
+
+    50%{
+        transform: translate(15px,-50vh);
+    }
+
+    75%{
+        transform: translate(-10px,-75vh);
     }
 
     100%{
-        transform: translateY(-110vh) scale(1.2);
-        opacity: 0;
+        transform: translate(10px,-110vh) scale(1.2);
+        opacity:0;
     }
 }
 

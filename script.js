@@ -148,6 +148,7 @@ window.submitData = async function(){
 
 const loveContainer =
     document.getElementById("loveContainer");
+    console.log(loveContainer);
 
 function createLove(){
 
@@ -170,6 +171,22 @@ function createLove(){
 
     love.style.animationDuration =
         duration + "s";
+
+    const direction =
+        Math.random() > 0.5 ? 1 : -1;
+
+    love.style.setProperty(
+        "--direction",
+        direction
+    );
+    
+    const drift =
+        Math.random() * 6 + 2;
+
+    love.style.setProperty(
+        "--drift",
+        drift + "px"
+    );
 
     loveContainer.appendChild(love);
 

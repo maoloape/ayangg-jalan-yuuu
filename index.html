@@ -1,109 +1,255 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ayang Capaa Main yukkk 🖤</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ayang Capaa Main yukkk 🖤</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        body {
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: #111;
-            font-family: Arial, sans-serif;
-            overflow: hidden;
-        }
+body{
+    min-height:100vh;
+    background:#111;
+    color:#fff;
+    font-family:Arial,sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+}
 
-        .container {
-            text-align: center;
-        }
+.container{
+    width:100%;
+    max-width:600px;
+    padding:20px;
+    text-align:center;
+}
 
-        #question {
-            color: white;
-            margin-bottom: 30px;
-            font-size: 2rem;
-            line-height: 1.5;
-        }
+h1{
+    margin-bottom:30px;
+    line-height:1.5;
+    font-size:clamp(1.5rem,5vw,2.3rem);
+}
 
-        #yesBtn,
-        #noBtn {
-            border: none;
-            border-radius: 12px;
-            padding: 14px 24px;
-            font-size: 18px;
-            cursor: pointer;
-        }
+button{
+    border:none;
+    border-radius:12px;
+    padding:14px 24px;
+    cursor:pointer;
+    font-size:16px;
+    margin:8px;
+}
 
-        #yesBtn {
-            background: #ff4d6d;
-            color: white;
-            margin-bottom: 15px;
-        }
+.primary{
+    background:#ff4d6d;
+    color:#fff;
+}
 
-        #noBtn {
-            background: #666;
-            color: white;
-            display: block;
-            margin: 0 auto;
-        }
-    </style>
+.secondary{
+    background:#666;
+    color:#fff;
+}
+
+.option{
+    width:100%;
+    max-width:320px;
+}
+
+input{
+    width:100%;
+    max-width:350px;
+    padding:14px;
+    border-radius:10px;
+    border:none;
+    margin-top:20px;
+    font-size:16px;
+}
+
+#nextBtn{
+    margin-top:20px;
+}
+
+.progress{
+    margin-bottom:20px;
+    opacity:.7;
+}
+
+.success{
+    font-size:1.5rem;
+}
+</style>
 </head>
 <body>
 
-    <div class="container">
+<div class="container">
+
+    <div class="progress" id="progress"></div>
+
+    <div id="app">
+
         <h1 id="question">
             Ayang Sabtuu Besokk mauu mainn gaaa 🖤
         </h1>
 
-        <button id="yesBtn">
+        <button class="primary" id="yesBtn">
             Yukk Akuu Mauuuu Bangetttt 🖤🖤
         </button>
 
         <br>
 
-        <button id="noBtn">
+        <button class="secondary" id="noBtn">
             GA!
         </button>
+
     </div>
 
-    <script>
-        const noBtn = document.getElementById("noBtn");
-        const yesBtn = document.getElementById("yesBtn");
-        const question = document.getElementById("question");
+</div>
 
-        function moveButton() {
-            const maxX = window.innerWidth - noBtn.offsetWidth;
-            const maxY = window.innerHeight - noBtn.offsetHeight;
+<script>
 
-            const x = Math.random() * maxX;
-            const y = Math.random() * maxY;
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbztWWuLrvF7BeaLE_EhKVav6K0Nm1ecjProwGaUx5qlacrAqvnFB8vPLHIGM_oVky9EIg/exec";
 
-            noBtn.style.position = "fixed";
-            noBtn.style.left = `${x}px`;
-            noBtn.style.top = `${y}px`;
-        }
+const app = document.getElementById("app");
+const progress = document.getElementById("progress");
 
-        noBtn.addEventListener("mouseover", moveButton);
-        noBtn.addEventListener("touchstart", moveButton);
+const dataForm = {
+    tema:"",
+    makanan:"",
+    baju:"",
+    jam:""
+};
 
-        yesBtn.addEventListener("click", () => {
-            question.innerHTML = `
-                YEAYYYY 🥰🥰🥰<br>
-                Makaciiiiii ayanggg 🖤
-            `;
+const noBtn = document.getElementById("noBtn");
 
-            yesBtn.style.display = "none";
-            noBtn.style.display = "none";
+function moveButton(){
+    const maxX = window.innerWidth - noBtn.offsetWidth;
+    const maxY = window.innerHeight - noBtn.offsetHeight;
+
+    noBtn.style.position = "fixed";
+    noBtn.style.left = Math.random() * maxX + "px";
+    noBtn.style.top = Math.random() * maxY + "px";
+}
+
+noBtn.addEventListener("mouseover", moveButton);
+noBtn.addEventListener("touchstart", moveButton);
+
+document.getElementById("yesBtn").addEventListener("click", showTema);
+
+function showTema(){
+
+    progress.innerHTML = "1 / 4";
+
+    app.innerHTML = `
+        <h1>YEAYYYY 🥰🥰🥰<br>Tema mainnya mau apa ayang?</h1>
+
+        <button class="primary option" onclick="pilihTema('Alam')">🌳 Alam</button>
+        <button class="primary option" onclick="pilihTema('Jalan Jauh')">🚗 Jalan-jalan Jauh</button>
+        <button class="primary option" onclick="pilihTema('Cafe')">☕ Cafe</button>
+        <button class="primary option" onclick="pilihTema('Mall')">🛍️ Mall</button>
+        <button class="primary option" onclick="pilihTema('Binatang')">🐱 Binatang</button>
+    `;
+}
+
+window.pilihTema = function(tema){
+
+    dataForm.tema = tema;
+
+    progress.innerHTML = "2 / 4";
+
+    app.innerHTML = `
+        <h1>Mau makan apaa ayang? 😋</h1>
+
+        <button class="primary option" onclick="pilihMakanan('Ayam')">🍗 Ayam</button>
+        <button class="primary option" onclick="pilihMakanan('Ikan')">🐟 Ikan</button>
+        <button class="primary option" onclick="pilihMakanan('Seafood')">🦐 Seafood</button>
+        <button class="primary option" onclick="pilihMakanan('Pizza')">🍕 Pizza</button>
+        <button class="primary option" onclick="pilihMakanan('Burger')">🍔 Burger</button>
+        <button class="primary option" onclick="pilihMakanan('Mie')">🍜 Mie</button>
+    `;
+}
+
+window.pilihMakanan = function(makanan){
+
+    dataForm.makanan = makanan;
+
+    progress.innerHTML = "3 / 4";
+
+    app.innerHTML = `
+        <h1>Pake baju apa ayang? 👗</h1>
+
+        <input
+            id="baju"
+            placeholder="Contoh: Dress Hitam Gemoy 🖤"
+        >
+
+        <br>
+
+        <button
+            class="primary"
+            onclick="simpanBaju()"
+        >
+            Lanjut ➜
+        </button>
+    `;
+}
+
+window.simpanBaju = function(){
+
+    dataForm.baju =
+        document.getElementById("baju").value;
+
+    progress.innerHTML = "4 / 4";
+
+    app.innerHTML = `
+        <h1>Kira-kira aku harus sampai jam berapa ayang? ⏰</h1>
+
+        <input type="time" id="jam">
+
+        <br>
+
+        <button
+            class="primary"
+            onclick="submitData()"
+        >
+            Kirim 🖤
+        </button>
+    `;
+}
+
+window.submitData = async function(){
+
+    dataForm.jam =
+        document.getElementById("jam").value;
+
+    try{
+
+        await fetch(APPS_SCRIPT_URL,{
+            method:"POST",
+            mode:"no-cors",
+            body: JSON.stringify(dataForm)
         });
-    </script>
+
+    }catch(err){
+        console.error(err);
+    }
+
+    progress.innerHTML = "";
+
+    app.innerHTML = `
+        <div class="success">
+            YEAYYYY 🥰🥰🥰<br><br>
+            Makaciiiiii ayanggg 🖤<br><br>
+            Sampai ketemuuu Sabtuuu 🥰
+        </div>
+    `;
+}
+
+</script>
 
 </body>
 </html>
